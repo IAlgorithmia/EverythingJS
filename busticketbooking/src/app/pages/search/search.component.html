@@ -63,13 +63,13 @@
   <!-- Search Form -->
   <section>
     <div class="container mt-5 d-flex justify-content-center">
-      <form class="search-form d-flex align-items-center shadow-lg">
+      <form class="search-form d-flex align-items-center shadow-lg" [formGroup] = 'travelInformation'>
         <div class="row w-100 text-white">
           <div class="col-md-3 d-flex align-items-center">
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
-              <select class="form-select">
-                <option>Select the location : </option>
+              <select class="form-select" formControlName = 'from'>
+                <option> Select the location : </option>
                 @for (item of location | async; track item.code){
                   <option [value]="item.locationId">{{item.locationName}}</option>
                 }
@@ -83,7 +83,7 @@
           <div class="col-md-3 d-flex align-items-center">
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-bus-front"></i></span>
-              <select class="form-select">
+              <select class="form-select" formControlName = 'to'>
                 <option>Select the location : </option>
                 @for (item of location | async; track item.code){
                   <option [value]="item.locationId">{{item.locationName}}</option>
@@ -95,11 +95,11 @@
           <div class="col-md-3 d-flex align-items-center">
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-              <input type="text" class="form-control" placeholder="Date" value="17 Aug 2024">
+              <input type="date" class="form-control" formControlName = 'date' placeholder="Date" value="17 Aug 2024">
             </div>
           </div>
           <div class="col-md-2 text-center">
-            <button type="submit" class="btn btn-light text-danger w-100">SEARCH BUSES</button>
+            <button type="button" (click) = "onSearch()" class="btn btn-light text-danger w-100">SEARCH BUSES</button>
           </div>
         </div>
       </form>
