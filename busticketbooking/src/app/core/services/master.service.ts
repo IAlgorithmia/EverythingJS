@@ -23,4 +23,8 @@ export class MasterService {
     return this.http.get<any>(`${environment.apiURL}getScheduleById?id=${id}`);
   }
 
+  getBookedSeats(id : number){
+    return this.http.get<any>(`${environment.apiURL}getScheduleById?id=${id}`);
+  }
+
 }
