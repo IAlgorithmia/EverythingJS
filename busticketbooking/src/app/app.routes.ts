@@ -10,6 +10,6 @@ export const routes: Routes = [{
   path: 'search',
   component : SearchComponent,
 }, {
-  path: 'booking',
+  path: 'booking/:id',
   component : BookingComponent,
-},];
+}, ];

@@ -1,17 +1,20 @@
 import {inject,  Component, OnInit } from '@angular/core';
 import {MasterService} from '../../core/services/master.service';
 import {Observable} from 'rxjs';
-import {AsyncPipe} from '@angular/common';
+import {AsyncPipe, DatePipe} from '@angular/common';
 import {ReactiveFormsModule, FormGroup, FormControl} from '@angular/forms';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-search',
-  imports: [AsyncPipe, ReactiveFormsModule],
+  imports: [AsyncPipe, ReactiveFormsModule, DatePipe, RouterLink],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
 
 export class SearchComponent {
+
+  busList : any[] = [];
 
   travelInformation = new FormGroup({
     from : new FormControl(''),
@@ -32,7 +35,11 @@ export class SearchComponent {
   }
 
   onSearch(){
-    // this.masterSrv.searchBuses(this.travelInformation.value.from, this.travelInformation.value.to, this.travelInformation.value.date)
+    const {from, to, date} = this.travelInformation.value;
+    this.masterSrv.searchBuses(from, to, date).subscribe((res) => {
+      this.busList = res;
+      console.log("Bus list fetched successfully");
+      console.log(this.busList);
+    })
   }
-
 }

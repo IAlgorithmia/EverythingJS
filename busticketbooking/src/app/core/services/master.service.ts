@@ -19,5 +19,8 @@ export class MasterService {
     return this.http.get<any[]>(`${environment.apiURL}searchBus?fromLocation=${from}&toLocation=${to}&travelDate=${date}`);
   }
 
+  getScheduleById(id : number){
+    return this.http.get<any>(`${environment.apiURL}getScheduleById?id=${id}`);
+  }
 
 }
